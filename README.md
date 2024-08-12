@@ -1,0 +1,2 @@
+# LoveMaths
+Small JS project 
