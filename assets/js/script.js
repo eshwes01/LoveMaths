@@ -4,13 +4,9 @@ document.addEventListener("DOMContentLoaded", function(){
     for(let button of buttons){
         button.addEventListener("click", function(){
             if(this.getAttribute("data-type")=== "submit"){
-                console.log(this.getAttribute("data-type"));
-                //runGame(this.getAttribute("data-type"));
-                alert("You Clicked Submit!");
                 checkAnswer();
             }else{
                 let gameType = this.getAttribute("data-type");
-                console.log(`This is the type that user choose :${gameType}`);
                 runGame(gameType);
             }
         });
@@ -31,7 +27,7 @@ function runGame(gameType){
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;
 
-    document.getElementById("answer-box").value =" ";// clear the Answer-box after the submit
+    document.getElementById("answer-box").value =""; // clear the Answer-box after the submit
     document.getElementById("answer-box").focus(); // Cursor focus in the Answer-box everytime the page is reload
 
     if(gameType === "addition") {
@@ -82,11 +78,9 @@ function calculateCorrectAnswer(){
     }else if(operator === "x"){
         return [operand1 * operand2, "multiplication"];
     }else if(operator === "/"){
-        result = [operand1 % operand2, "division"];
-        return result;
+        return [operand1 / operand2, "division"];
     }
     else{
-        alert( "Unimplemented operator");
         alert( `Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
@@ -122,7 +116,9 @@ function displayMultiplyQuestion(operand1,operand2){
 }
 
 function displayDivisionQuestion(operand1,operand2){
-    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
-    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
+    operand1 = operand1*operand2;
+
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "/";
 }
