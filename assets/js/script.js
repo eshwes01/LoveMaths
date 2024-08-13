@@ -4,18 +4,18 @@ document.addEventListener("DOMContentLoaded", function(){
     for(let button of buttons){
         button.addEventListener("click", function(){
             if(this.getAttribute("data-type")=== "submit"){
-                checkAnswer();
+                console.log(this.getAttribute("data-type"));
                 alert("You Clicked Submit!");
+                checkAnswer();
             }else{
                 let gameType = this.getAttribute("data-type");
                 console.log(`This is the type that user choose :${gameType}`);
-                
+                runGame(gameType);
             }
-        })
+        });
     }
     runGame("addition");
-
-})
+});
 /**
  * The main game "loop ", 
  * called when the script is first loaded 
@@ -27,7 +27,6 @@ function runGame(gameType){
 
     if(gameType === "addition") {
         displayAdditionQuestion (num1,num2);
-        
     }else{
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -63,6 +62,7 @@ function calculateCorrectAnswer(){
     if(operator === "+"){
         return [operand1 + operand2, "addition"]; 
     }else{
+        alert( "Unimplemented operator");
         alert( `Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
