@@ -31,7 +31,8 @@ function runGame(gameType){
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;
 
-    document.getElementById("answer-box").value =" ";
+    document.getElementById("answer-box").value =" ";// clear the Answer-box after the submit
+    document.getElementById("answer-box").focus(); // Cursor focus in the Answer-box everytime the page is reload
 
     if(gameType === "addition") {
         displayAdditionQuestion (num1,num2);
@@ -81,7 +82,7 @@ function calculateCorrectAnswer(){
     }else if(operator === "x"){
         return [operand1 * operand2, "multiplication"];
     }else if(operator === "/"){
-        result = [operand1 / operand2, "division"];
+        result = [operand1 % operand2, "division"];
         return result;
     }
     else{
@@ -121,7 +122,7 @@ function displayMultiplyQuestion(operand1,operand2){
 }
 
 function displayDivisionQuestion(operand1,operand2){
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "/";
 }
