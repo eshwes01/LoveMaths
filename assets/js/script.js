@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         });
     }
+    document.getElementById("answer-box").addEventListener("keydown",function(event){
+        if(event.key == "Enter"){
+            checkAnswer();
+        }
+    });
 });
 
 /**
@@ -25,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function(){
 function runGame(gameType){
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;
+
+    document.getElementById("answer-box").value =" ";
 
     if(gameType === "addition") {
         displayAdditionQuestion (num1,num2);
@@ -74,7 +81,8 @@ function calculateCorrectAnswer(){
     }else if(operator === "x"){
         return [operand1 * operand2, "multiplication"];
     }else if(operator === "/"){
-        return [operand1 / operand2, "division"];
+        result = [operand1 / operand2, "division"];
+        return result;
     }
     else{
         alert( "Unimplemented operator");
@@ -101,8 +109,8 @@ function displayAdditionQuestion(operand1,operand2){
 }
 
 function displaySubtractQuestion(operand1,operand2){
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
 }
 
